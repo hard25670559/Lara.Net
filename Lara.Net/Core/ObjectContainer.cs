@@ -25,8 +25,17 @@ namespace Lara.Net.Core
             return reflectionObject;
         }
 
+        public void SetObject(object instance)
+        {
+            this.ReflectionOfType = instance.GetType();
+            this.ReflectionOfObject = instance;
+        }
+
         public object GetMethod(string methodName, params object[] parameter)
         {
+
+            List<MethodInfo> methodInfos = this.ReflectionOfType.GetMethods().ToList();
+
             MethodInfo methodInfo = this.ReflectionOfType.GetMethod(methodName);
 
             object result = methodInfo.Invoke(this.ReflectionOfObject, parameter);
