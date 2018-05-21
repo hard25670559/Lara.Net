@@ -22,6 +22,7 @@
         // Code First 模型的詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=390109。
 
         public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
     }
 
 }

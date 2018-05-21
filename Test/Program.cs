@@ -24,22 +24,52 @@ namespace Test
             //
             //string s = objectContainer.GetMethod("CCC") as string;
 
-            ObjectContainer objectContainer = new ObjectContainer();
-            
-            objectContainer.GetObject(typeof(Customer).ToString());
-            
+            //ObjectContainer objectContainer = new ObjectContainer();
+            //
+            //objectContainer.GetObject(typeof(Customer).ToString());
+
             //objectContainer.GetMethod("");
 
-            CustomerRepository customerRepository = new CustomerRepository();
+            //CustomerRepository customerRepository = new CustomerRepository();
+            //
+            //List<Customer> customers = customerRepository.Read();
+            //
+            //customerRepository.Update(1, new Customer
+            //{
+            //    Name = "Change Name4."
+            //});
+            //
+            //customers = customerRepository.Read();
 
-            List<Customer> customers = customerRepository.Read();
 
-            customerRepository.Create(new Customer
+            ProductRepository productRepository = new ProductRepository();
+
+            List<Product> products = productRepository.Read();
+
+            //productRepository.Create(new Product
+            //{
+            //    Price = 100,
+            //    Name = "PC",
+            //});
+            //
+            //productRepository.Create(new Product
+            //{
+            //    Price = 200,
+            //    Name = "Mouse",
+            //});
+            //
+            //productRepository.Create(new Product
+            //{
+            //    Price = 100,
+            //    Name = "Keybord",
+            //});
+
+            productRepository.Update(1, new Product
             {
-                Name = "Customer2"
+                Price = 500,
             });
-            
-            customers = customerRepository.Read();
+
+            products = productRepository.Read();
 
 
         }
