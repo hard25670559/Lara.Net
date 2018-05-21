@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lara.Net.Core.Repository
 {
-    public interface IRepository<T> : ICreate<T>, IUpdate<T>, IRead<T>, IDelete where T : Model
+    public interface IRepository<T> : ICreate<T>, IUpdate<T>, IRead<T>, IDelete, ISerialNumberToId where T : Model
     {
     }
 }

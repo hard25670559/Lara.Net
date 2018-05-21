@@ -9,8 +9,6 @@ namespace Test
 {
     class ProductRepository : Lara.Net.Core.Repository.Repository<Product>
     {
-        public ProductRepository() : base(new DB())
-        {
-        }
+
     }
 }

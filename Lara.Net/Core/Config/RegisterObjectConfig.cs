@@ -10,7 +10,8 @@ namespace Lara.Net.Core.Config
     {
 
         public static Dictionary<string, Type> ObjectContainer;
-        public static Dictionary<string, Type> RepositoryContainer;
+        public static Dictionary<string, Type> RepositoryModelContainer;
+        public static Type DBConfig;
 
     }
 }

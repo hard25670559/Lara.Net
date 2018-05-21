@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test
+namespace Lara.Net.Core.Repository
 {
-    public class CustomerRepository : Lara.Net.Core.Repository.Repository<Customer>
+    public interface ISerialNumberToId
     {
+
+        int SerialNumberToId(string serialNumber);
 
     }
 }

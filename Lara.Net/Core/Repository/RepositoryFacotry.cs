@@ -10,14 +10,18 @@ namespace Lara.Net.Core.Repository
     public class RepositoryFacotry
     {
 
-        //public static IRepository Create(string name)
-        //{
-        //    ObjectContainer objectContainer = new ObjectContainer();
-        //
-        //    IRepository repository = objectContainer.GetObject(RegisterObjectConfig.RepositoryContainer[name].ToString()) as IRepository;
-        //
-        //    return repository;
-        //}
+        public static IRepository<Model> Create(string name)
+        {
+            ObjectContainer objectContainer = new ObjectContainer();
+
+            Type repositoryType = typeof(Repository<>);
+
+            Type repositoryAddGeneric = repositoryType.MakeGenericType(new Type[] { RegisterObjectConfig.RepositoryModelContainer[name] });
+
+            IRepository<Model> repository = Activator.CreateInstance(repositoryAddGeneric, null) as IRepository<Model>;
+        
+            return repository;
+        }
 
     }
 }

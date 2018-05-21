@@ -55,6 +55,7 @@
     <Compile Include="Core\Auth\Member.cs" />
     <Compile Include="Core\Repository\IRead.cs" />
     <Compile Include="Core\Repository\IRepository.cs" />
+    <Compile Include="Core\Repository\ISerialNumberToId.cs" />
     <Compile Include="Core\Repository\IUpdate.cs" />
     <Compile Include="Core\Repository\Model.cs" />
     <Compile Include="Core\Auth\Purview.cs" />

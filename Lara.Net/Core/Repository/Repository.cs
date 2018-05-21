@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Lara.Net.Core.Repository
 {
-    public abstract class Repository<T> : IRepository<T> where T : Model
+    public class Repository<T> : IRepository<T> where T : Model
     {
 
         private DbContext DB;
@@ -17,25 +17,27 @@ namespace Lara.Net.Core.Repository
         private string ModelName;
         private List<string> Collumns = new List<string>();
 
-        public Repository(DbContext db)
+        public Repository()
         {
-            this.DB = db;
+            this.DB = Activator.CreateInstance(RegisterObjectConfig.DBConfig, null) as DbContext;
             this.ModelName = typeof(T).Name;
             this.ObjectContainer.SetObject(this.DB);
             this.SetCollumns();
         }
 
-        public bool Create(T model)
+        public string Create(T model)
         {
             DbSet<T> dbSet = this.ObjectContainer.GetMethod("get_" + this.ModelName) as DbSet<T>;
 
-            model.SerialNumber = "";
+            //暫時先自動產生GUID，之後要改成使用者可以自行修改流水號的編號方式
+            model.SerialNumber = Guid.NewGuid().ToString("N");
             model.Create = DateTime.Now;
             model.Update = DateTime.Now;
             model.Delete = false;
 
             dbSet.Add(model as T);
-            return this.Save();
+            this.Save();
+            return model.SerialNumber;
         }
 
         public bool Delete(int id, bool isSoft = true)
@@ -68,6 +70,13 @@ namespace Lara.Net.Core.Repository
         {
             this.DB.SaveChanges();
             return true;
+        }
+
+        public int SerialNumberToId(string serialNumber)
+        {
+            DbSet<T> dbSet = this.ObjectContainer.GetMethod("get_" + this.ModelName) as DbSet<T>;
+
+            return dbSet.Where(w => w.SerialNumber == serialNumber).Single().Id;
         }
 
         public bool Update(int id, T model)

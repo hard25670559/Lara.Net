@@ -9,7 +9,7 @@ namespace Lara.Net.Core.Repository
     public interface ICreate<T> where T : Model
     {
 
-        bool Create(T model);
+        string Create(T model);
 
     }
 }
