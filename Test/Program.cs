@@ -11,8 +11,26 @@ namespace Test
 {
     class Program
     {
+
+        public static IRepository<Model> Repository()
+        {
+            
+            List<object> list = new List<object>
+            {
+                { new CustomerRepository() },
+            };
+
+            IRepository<Model> repository = list[0] as IRepository<Model>;
+
+            return repository;
+
+        }
+
         static void Main(string[] args)
         {
+            RegisterObjectConfig.DBConfig = typeof(DB);
+
+            //IRepository<Model> repository = Program.Repository();
 
             //RegisterObjectConfig.ObjectContainer = new Dictionary<string, Type>
             //{
@@ -48,12 +66,17 @@ namespace Test
                 { "product", typeof(Product) }
             };
 
-            RegisterObjectConfig.DBConfig = typeof(DB);
 
             ProductRepository productRepository = new ProductRepository();
-            //IRepository<Model> productRepository = RepositoryFacotry.Create("product");
-
             List<Product> products = productRepository.Read();
+
+            productRepository.Update(2, new Product
+            {
+                Name = "change name2."
+            });
+
+            //IRepository<Product> productRepository = RepositoryFacotry.Create<Product>(); ;
+
 
             //productRepository.Create(new Product
             //{
@@ -66,19 +89,12 @@ namespace Test
             //    Price = 200,
             //    Name = "Mouse",
             //});
-            //
-            productRepository.Create(new Product
-            {
-                Price = 666,
-                Name = "666",
-            });
-
             //productRepository.Update(1, new Product
             //{
             //    Price = 500,
             //});
 
-            //products = productRepository.Read();
+            products = productRepository.Read();
 
 
         }

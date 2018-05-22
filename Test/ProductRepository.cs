@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lara.Net.Core.Repository;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Test
 {
-    class ProductRepository : Lara.Net.Core.Repository.Repository<Product>
+    class ProductRepository : Repository<Product>
     {
 
     }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Lara.Net.Core.Auth
 {
-    public class Member
+    public enum LoginStatus
     {
-
-        public Purview Purview { get; set; }
-
+        LOGIN_ERROR,
+        LOGIN_SUCCESS,
+        NOT_YET
     }
 }
