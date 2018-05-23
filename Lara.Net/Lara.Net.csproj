@@ -74,7 +74,9 @@
     <Compile Include="Core\Auth\LoginStatus.cs" />
     <Compile Include="Core\Config\RegisterObjectConfig.cs" />
     <Compile Include="Core\ObjectContainer.cs" />
+    <Compile Include="Core\Repository\GUIDSrialNumber.cs" />
     <Compile Include="Core\Repository\ICreate.cs" />
+    <Compile Include="Core\Repository\ICreateSerialNumber.cs" />
     <Compile Include="Core\Repository\IDelete.cs" />
     <Compile Include="Core\Repository\IModel.cs" />
     <Compile Include="Core\Auth\AuthMember.cs" />
@@ -85,7 +87,6 @@
     <Compile Include="Core\Repository\Model.cs" />
     <Compile Include="Core\Auth\Purview.cs" />
     <Compile Include="Core\Repository\Repository.cs" />
-    <Compile Include="Core\Repository\RepositoryFacotry.cs" />
     <Compile Include="Core\ServiceContainer.cs" />
     <Compile Include="Core\Service\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

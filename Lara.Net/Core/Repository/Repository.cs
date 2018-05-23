@@ -37,21 +37,29 @@ namespace Lara.Net.Core.Repository
         /// </summary>
         private List<string> Collumns = new List<string>();
 
-        public Repository()
-        {
-            this.DB = Activator.CreateInstance(RegisterObjectConfig.DBConfig, null) as DbContext;
-            this.ModelName = typeof(T).Name;
-            this.ObjectContainer.SetObject(this.DB);
-            this.SetCollumns();
-        }
+        /// <summary>
+        /// 產生流水號的方式
+        /// </summary>
+        public ICreateSerialNumber SerialNumber;
 
         /// <summary>
-        /// 產生流水號，可以透過複寫的方式改變流水號的規則
+        /// 初始化Repository
         /// </summary>
-        /// <returns>流水號</returns>
-        public virtual string SerialNumber()
+        /// <param name="serialNumber">預設使用GUID產生流水號</param>
+        public Repository(ICreateSerialNumber serialNumber = null)
         {
-            return Guid.NewGuid().ToString("N");
+            this.SerialNumber = new GUIDSrialNumber();
+
+            if (serialNumber != null)
+            {
+                this.SerialNumber = serialNumber;
+            }
+
+            this.DB = Activator.CreateInstance(RegisterObjectConfig.DBConfig, null) as DbContext;
+            this.ObjectContainer.SetObject(this.DB);
+            this.ModelName = typeof(T).Name;
+
+            this.SetCollumns();
         }
 
         /// <summary>
@@ -64,7 +72,7 @@ namespace Lara.Net.Core.Repository
             DbSet<T> dbSet = this.ObjectContainer.GetMethod("get_" + this.ModelName) as DbSet<T>;
 
             //暫時先自動產生GUID，之後要改成使用者可以自行修改流水號的編號方式
-            model.SerialNumber = this.SerialNumber();
+            model.SerialNumber = this.SerialNumber.CreateSeriaNumber();
             model.Create = DateTime.Now;
             model.Update = DateTime.Now;
             model.Delete = false;
