@@ -189,35 +189,17 @@ namespace Lara.Net.Core.Repository
         private void SetCollumns()
         {
             List<MethodInfo> tmp = typeof(T).GetMethods().ToList();
-            List<MethodInfo> result = new List<MethodInfo>();
-
+            List<MethodInfo> noColl = typeof(Model).GetMethods().ToList();
             foreach (MethodInfo item in tmp)
             {
-
-                bool isEquals = item.Name == "Equals";
-                bool isGetHashCode = item.Name == "GetHashCode";
-                bool isGetType = item.Name == "GetType";
-                bool isToString = item.Name == "ToString";
-
-                if (!isEquals && !isGetHashCode && !isGetType && !isToString)
+                bool b = true;
+                foreach (var x in noColl)
                 {
-                    bool isId = item.Name.Split('_')[1] == "Id";
-                    bool isSerialNumber = item.Name.Split('_')[1] == "SerialNumber";
-                    bool isCreate = item.Name.Split('_')[1] == "Create";
-                    bool isUpdate = item.Name.Split('_')[1] == "Update";
-                    bool isDelete = item.Name.Split('_')[1] == "Delete";
-
-                    if (!isId && !isSerialNumber && !isCreate && !isUpdate && !isDelete)
-                    {
-                        bool isGet = item.Name.Split('_')[0] == "get";
-
-                        if (!isGet)
-                        {
-                            this.Collumns.Add(item.Name.Split('_')[1]);
-                        }
-                    }
-
+                    if (x.Name == item.Name)
+                        b = false;
                 }
+                if (b && item.Name.Split('_')[0] == "get")
+                    Collumns.Add(item.Name.Split('_')[1]);
             }
         }
 
