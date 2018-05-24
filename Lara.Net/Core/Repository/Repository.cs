@@ -189,11 +189,11 @@ namespace Lara.Net.Core.Repository
         private void SetCollumns()
         {
             List<MethodInfo> tmp = typeof(T).GetMethods().ToList();
-            List<MethodInfo> noColl = typeof(Model).GetMethods().ToList();
+            List<MethodInfo> banColl = typeof(Model).GetMethods().ToList();
             foreach (MethodInfo item in tmp)
             {
                 bool b = true;
-                foreach (var x in noColl)
+                foreach (var x in banColl)
                 {
                     if (x.Name == item.Name)
                         b = false;
