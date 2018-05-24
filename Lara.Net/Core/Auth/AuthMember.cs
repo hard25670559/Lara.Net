@@ -10,7 +10,7 @@ namespace Lara.Net.Core.Auth
     public class AuthMember : Model
     {
 
-        public Purview Purview { get; set; }
+        //public Purview Purview { get; set; }
 
         public string Account { get; set; }
         public string Password { get; set; }

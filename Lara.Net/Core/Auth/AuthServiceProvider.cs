@@ -8,10 +8,10 @@ using System.Web.Mvc;
 
 namespace Lara.Net.Core.Auth
 {
-    public class AuthServiceProvider : IAuth, IAuthAdapter
+    public class AuthServiceProvider<T> : IAuth, IAuthAdapter where T : AuthMember
     {
 
-        private Repository<AuthMember> MemberRepository = new Repository<AuthMember>();
+        private Repository<T> MemberRepository = new Repository<T>();
         private IAuthAdapter AuthAdapter;
 
         public AuthServiceProvider(IAuthAdapter authAdapter)
