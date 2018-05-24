@@ -87,6 +87,7 @@
     <Compile Include="Core\Repository\Model.cs" />
     <Compile Include="Core\Auth\Purview.cs" />
     <Compile Include="Core\Repository\Repository.cs" />
+    <Compile Include="Core\Repository\RepositoryContainer.cs" />
     <Compile Include="Core\ServiceContainer.cs" />
     <Compile Include="Core\Service\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

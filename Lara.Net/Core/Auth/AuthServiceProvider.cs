@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Lara.Net.Core.Auth
 {
-    public class AuthServiceProvider : IAuth
+    public class AuthServiceProvider : IAuth, IAuthAdapter
     {
 
         private Repository<AuthMember> MemberRepository = new Repository<AuthMember>();
@@ -19,9 +19,28 @@ namespace Lara.Net.Core.Auth
             this.AuthAdapter = authAdapter;
         }
 
-        public AuthMember GetLoginMemberInfo()
+        public LoginStatus LoginStatus
         {
-            return this.AuthAdapter.Member;
+            get
+            {
+                return this.AuthAdapter.LoginStatus;
+            }
+            set
+            {
+                this.AuthAdapter.LoginStatus = value;
+            }
+        }
+
+        public AuthMember Member
+        {
+            get
+            {
+                return this.AuthAdapter.Member;
+            }
+            set
+            {
+                this.AuthAdapter.Member = value;
+            }
         }
 
         public bool IsLogin()
