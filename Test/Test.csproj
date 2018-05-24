@@ -54,6 +54,8 @@
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerRepository.cs" />
     <Compile Include="DB.cs" />
+    <Compile Include="LikeSession.cs" />
+    <Compile Include="Member.cs" />
     <Compile Include="Migrations\201805210505062_AddTable.cs" />
     <Compile Include="Migrations\201805210505062_AddTable.Designer.cs">
       <DependentUpon>201805210505062_AddTable.cs</DependentUpon>

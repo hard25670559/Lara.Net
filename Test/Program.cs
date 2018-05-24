@@ -1,4 +1,5 @@
 ﻿using Lara.Net.Core;
+using Lara.Net.Core.Auth;
 using Lara.Net.Core.Config;
 using Lara.Net.Core.Repository;
 using System;
@@ -12,7 +13,7 @@ namespace Test
     class Program
     {
 
-        static void Main(string[] args)
+        public static void RepositoryTest()
         {
             RegisterObjectConfig.DBConfig = typeof(DB);
 
@@ -31,6 +32,22 @@ namespace Test
             });
 
             products = productRepository.Read();
+        }
+
+        static void Main(string[] args)
+        {
+            RegisterObjectConfig.DBConfig = typeof(DB);
+
+            AuthServiceProvider authServiceProvider = new AuthServiceProvider(new LikeSession());
+
+            var test = authServiceProvider.IsLogin();
+
+            LoginStatus tesa = authServiceProvider.LoginStatus;
+
+            LikeSession.SessionLoginStatus = LoginStatus.LOGIN_SUCCESS;
+
+            LoginStatus tesasdft = authServiceProvider.LoginStatus;
+            
 
 
         }

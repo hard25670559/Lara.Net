@@ -13,8 +13,6 @@ namespace Lara.Net.Core.Auth
 
         bool IsSelf(AuthMember member);
 
-        AuthMember GetLoginMemberInfo();
-
         LoginStatus Login(AuthMember member);
 
         void Logout();
